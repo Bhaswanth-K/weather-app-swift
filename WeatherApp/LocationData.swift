@@ -5,47 +5,28 @@
 //  Created by rentamac on 1/23/26.
 //
 
-import SwiftUI
+import Foundation
 
 let locations: [Location] = [
     Location(
         name: "Mumbai",
-        weather: .sunny,
-        temperature: Temperature(min: 22, max: 32)
+        latitude: 19.0760,
+        longitude: 72.8777
     ),
     Location(
         name: "New Delhi",
-        weather: .foggy,
-        temperature: Temperature(min: 11, max: 24)
+        latitude: 28.6139,
+        longitude: 77.2090
     ),
     Location(
         name: "Chennai",
-        weather: .sunny,
-        temperature: Temperature(min: 24, max: 36)
-    ),
-    Location(
-        name: "Pune",
-        weather: .sunny,
-        temperature: Temperature(min: 22, max: 32)
+        latitude: 13.0827,
+        longitude: 80.2707
     ),
     Location(
         name: "Bengaluru",
-        weather: .rainy,
-        temperature: Temperature(min: 24, max: 30)
-    ),
-    Location(
-        name: "Gurgaon",
-        weather: .foggy,
-        temperature: Temperature(min: 11, max: 23)
-    ),
-    Location(
-        name: "Noida",
-        weather: .snow,
-        temperature: Temperature(min: 9, max: 22)
-    ),
-    Location(
-        name: "Hyderabad",
-        weather: .windy,
-        temperature: Temperature(min: 22, max: 32)
+        latitude: 12.9716,
+        longitude: 77.5946
     )
 ]
+

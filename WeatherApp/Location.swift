@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+
 struct Location: Identifiable {
     let id = UUID()
     let name: String
-    let weather: Weather
-    let temperature: Temperature
+    let latitude: Double
+    let longitude: Double
 }

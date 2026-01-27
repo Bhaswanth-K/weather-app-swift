@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		247EE37B2F237FEB00BFE4FB /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24A052B22F28C9E4005E7DFB /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,16 +33,8 @@
 			isa = PBXGroup;
 			children = (
 				247EE37D2F237FEB00BFE4FB /* WeatherApp */,
-				247EE37C2F237FEB00BFE4FB /* Products */,
+				24A052B22F28C9E4005E7DFB /* WeatherApp.app */,
 			);
-			sourceTree = "<group>";
-		};
-		247EE37C2F237FEB00BFE4FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				247EE37B2F237FEB00BFE4FB /* WeatherApp.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -67,7 +59,7 @@
 			packageProductDependencies = (
 			);
 			productName = WeatherApp;
-			productReference = 247EE37B2F237FEB00BFE4FB /* WeatherApp.app */;
+			productReference = 24A052B22F28C9E4005E7DFB /* WeatherApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -95,7 +87,7 @@
 			mainGroup = 247EE3722F237FEB00BFE4FB;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 247EE37C2F237FEB00BFE4FB /* Products */;
+			productRefGroup = 247EE3722F237FEB00BFE4FB;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

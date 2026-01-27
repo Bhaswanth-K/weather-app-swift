@@ -9,21 +9,30 @@ import SwiftUI
 
 struct ListScreen: View {
 
+    @State private var searchText = ""
+
+    var filteredLocations: [Location] {
+        if searchText.isEmpty {
+            return locations
+        } else {
+            return locations.filter {
+                $0.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+    }
+
     var body: some View {
-        List(locations) { location in
+        List(filteredLocations) { location in
             NavigationLink {
                 DetailScreen(location: location)
             } label: {
-                HStack {
-                    Text(location.name)
-
-                    Spacer()
-
-                    Image(systemName: location.weather.icon)
-                        .foregroundColor(.yellow)
-                }
+                Text(location.name)
             }
         }
         .navigationTitle("Locations")
+        .searchable(
+            text: $searchText,
+            placement: .navigationBarDrawer(displayMode: .always)
+        )
     }
 }

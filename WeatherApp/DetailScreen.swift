@@ -11,6 +11,13 @@ struct DetailScreen: View {
 
     let location: Location
 
+    @State private var temperatureText: String = "Loading..."
+    @State private var iconName: String = "cloud.fill"
+
+    private let weatherService = WeatherService(
+        networkService: HttpNetworking()
+    )
+
     var body: some View {
         VStack(spacing: 20) {
 
@@ -18,20 +25,48 @@ struct DetailScreen: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
 
-            Image(systemName: location.weather.icon)
+            Image(systemName: iconName)
                 .resizable()
-                .frame(width: 120, height: 120)
+                .frame(width: 100, height: 100)
                 .foregroundColor(.yellow)
 
-            Text(location.temperature.temperatureText)
-                .font(.title2)
+            Text(temperatureText)
+                .font(.title)
 
-            Text("""
-A warm breeze drifted through the streets as the afternoon sun hovered behind a veil of scattered clouds. In the north, the air felt dry and dusty, while the southern coast carried the familiar scent of moisture from the sea.
-""")
-            .foregroundColor(.gray)
-            .padding()
         }
-        .navigationTitle("Details")
+        .task {
+            await fetchWeather()
+        }
+    }
+
+    private func fetchWeather() async {
+        do {
+            let response = try await weatherService.fetchWeather(
+                latitude: location.latitude,
+                longitude: location.longitude
+            )
+
+            let temp = response.current.temperature2M
+
+            temperatureText = "\(temp) °C"
+            iconName = getWeatherIcon(from: temp)
+
+        } catch {
+            temperatureText = "Unable to load"
+            iconName = "exclamationmark.triangle.fill"
+        }
+    }
+
+    func getWeatherIcon(from temperature: Double) -> String {
+        if temperature >= 30 {
+            return Weather.sunny.icon
+        } else if temperature >= 20 {
+            return Weather.cloudy.icon
+        } else if temperature >= 10 {
+            return Weather.rainy.icon
+        } else {
+            return Weather.snowy.icon
+        }
     }
 }
+

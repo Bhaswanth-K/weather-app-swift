@@ -5,28 +5,24 @@
 //  Created by rentamac on 1/23/26.
 //
 
-import SwiftUI
-
 enum Weather {
     case sunny
-    case foggy
-    case snow
+    case cloudy
     case rainy
-    case windy
+    case snowy
 
     var icon: String {
         switch self {
         case .sunny:
             return "sun.max.fill"
-        case .foggy:
-            return "cloud.fog.fill"
-        case .snow:
-            return "snowflake"
+        case .cloudy:
+            return "cloud.fill"
         case .rainy:
             return "cloud.rain.fill"
-        case .windy:
-            return "wind"
+        case .snowy:
+            return "snowflake"
         }
     }
 }
+
 
