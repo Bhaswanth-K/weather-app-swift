@@ -1,6 +1,6 @@
 # WeatherApp 
 
-## 📱 App Screens (Initial Version)
+## App Screens (Initial Version)
 
 ###  Home Screen
 ![Home Screen](output/home.png)
@@ -48,4 +48,6 @@ updated the app using **real-time weather data** from the **Open-Meteo API**.
 - Fetches **live temperature** using latitude & longitude
 - Weather icons are shown based on temperature range
 - Detail screen now updates dynamically from API
+- Separated UI and logic using **MVVM architecture**
+
 
