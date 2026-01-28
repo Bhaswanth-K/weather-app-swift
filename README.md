@@ -1,53 +1,26 @@
 # WeatherApp 
 
-## App Screens (Initial Version)
+## App Screens
 
-###  Home Screen
-![Home Screen](output/home.png)
+### Home Screen
+![Home Screen](output/home_latest_1.1.png)
 
-###  City List Screen
-![City List](output/city_list.png)
+### City List Screen
+![City List Screen](output/city_latest_1.1.png)
 
-###  Weather Detail Screen
-![Detail View](output/detail_view.png)
-
----
-
-##  Project Structure
-
-### Views (UI Screens)
-- `ContentView.swift` →  Home screen  
-- `ListScreen.swift` → City list screen   
-- `DetailScreen.swift` → Weather detail screen  
-
-### Models (Data)
-- `Location.swift` → City model  
-- `Temperature.swift` → Temperature model   
-- `Weather.swift` → Weather type and system icon mapping  
-- `LocationData.swift` → Static list of cities with coordinates  
+### Weather Detail Screen
+![Weather Detail Screen](output/detail_view_latest_1.1.1.png)
+![Weather Detail Screen](output/detail_view_latest_1.1.2.png)
+![Weather Detail Screen](output/detail_view_latest_1.1.3.png)
 
 ---
 
-##  Updated Features (Latest Version)
+## Features
 
-updated the app using **real-time weather data** from the **Open-Meteo API**.
+- Fetches real-time temperature using the Open-Meteo Weather API  
+- Displays weather details for selected cities  
+- Shows weather icons based on temperature range  
+- Uses MVVM architecture to separate UI and logic  
+- Uses Core Data to store weather data and update the list screen  
 
-###  Home Screen (Updated)
-![Home Screen Latest](output/home_latest.png)
-
-###  City List Screen (Updated)
-![City List Latest](output/city_list_latest.png)
-
-###  Weather Detail Screen (Updated)
-![Detail View Latest](output/detail_view_latest.png)
-
-
-##  New Features
-
-- Integrated **Open-Meteo Weather API**
-- Fetches **live temperature** using latitude & longitude
-- Weather icons are shown based on temperature range
-- Detail screen now updates dynamically from API
-- Separated UI and logic using **MVVM architecture**
-
-
+---
