@@ -11,6 +11,8 @@ struct DetailScreen: View {
 
     let location: Location
     @StateObject private var viewModel = DetailViewModel()
+    
+    @Environment(\.managedObjectContext) private var context
 
     var body: some View {
         VStack(spacing: 20) {
@@ -30,9 +32,12 @@ struct DetailScreen: View {
         .task {
             await viewModel.fetchWeather(
                 latitude: location.latitude,
-                longitude: location.longitude
+                longitude: location.longitude,
+                cityName: location.name,
+                context: context
             )
         }
+
     }
 }
 

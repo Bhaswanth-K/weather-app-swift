@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Combine
+import CoreData
+
 
 @MainActor
 class DetailViewModel: ObservableObject {
@@ -24,7 +26,12 @@ class DetailViewModel: ObservableObject {
         self.weatherService = weatherService
     }
 
-    func fetchWeather(latitude: Double, longitude: Double) async {
+    func fetchWeather(
+        latitude: Double,
+        longitude: Double,
+        cityName: String,
+        context: NSManagedObjectContext
+    ) async {
         do {
             let response = try await weatherService.fetchWeather(
                 latitude: latitude,
@@ -32,14 +39,38 @@ class DetailViewModel: ObservableObject {
             )
 
             let temp = response.current.temperature2M
+            let icon = getWeatherIcon(from: temp)
+
             temperatureText = "\(temp) °C"
-            iconName = getWeatherIcon(from: temp)
+            iconName = icon
+
+            saveWeather(
+                city: cityName,
+                temperature: temp,
+                icon: icon,
+                context: context
+            )
 
         } catch {
             temperatureText = "Unable to load"
-            iconName = "exclamationmark.triangle.fill"
         }
     }
+
+    
+    private func saveWeather(
+        city: String,
+        temperature: Double,
+        icon: String,
+        context: NSManagedObjectContext
+    ) {
+        let weather = CityWeather(context: context)
+        weather.cityName = city
+        weather.temperature = temperature
+        weather.iconName = icon
+
+        try? context.save()
+    }
+
 
     private func getWeatherIcon(from temperature: Double) -> String {
         if temperature >= 30 {

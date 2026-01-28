@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ListScreen: View {
 
     @State private var searchText = ""
+
+    @Environment(\.managedObjectContext) private var context
+    @StateObject private var viewModel = ListViewModel()
 
     var filteredLocations: [Location] {
         if searchText.isEmpty {
@@ -26,7 +30,18 @@ struct ListScreen: View {
             NavigationLink {
                 DetailScreen(location: location)
             } label: {
-                Text(location.name)
+                HStack {
+                    Text(location.name)
+
+                    Spacer()
+
+                    if let weather = viewModel.weather(for: location.name) {
+                        HStack(spacing: 6) {
+                            Image(systemName: weather.iconName ?? "questionmark")
+                            Text("\(Int(weather.temperature))°C")
+                        }
+                    }
+                }
             }
         }
         .navigationTitle("Locations")
@@ -34,5 +49,8 @@ struct ListScreen: View {
             text: $searchText,
             placement: .navigationBarDrawer(displayMode: .always)
         )
+        .onAppear {
+            viewModel.fetchWeather(context: context)
+        }
     }
 }
