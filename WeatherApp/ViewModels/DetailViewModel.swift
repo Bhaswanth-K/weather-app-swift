@@ -15,6 +15,13 @@ class DetailViewModel: ObservableObject {
 
     @Published var temperatureText: String = "Loading..."
     @Published var iconName: String = "cloud.fill"
+    @Published var windText: String = ""
+    @Published var windSpeed = ""
+    @Published var humidity = ""
+    @Published var sourceText = ""
+    @Published var sourceColor: Color = .green
+
+
 
     private let weatherService: WeatherServiceProtocol
 
@@ -32,44 +39,96 @@ class DetailViewModel: ObservableObject {
         cityName: String,
         context: NSManagedObjectContext
     ) async {
+
         do {
+
             let response = try await weatherService.fetchWeather(
                 latitude: latitude,
                 longitude: longitude
             )
 
             let temp = response.current.temperature2M
-            let icon = getWeatherIcon(from: temp)
+            let wind = response.current.windSpeed
+            let hum = response.current.relativeHumidity
 
-            temperatureText = "\(temp) °C"
-            iconName = icon
+            temperatureText = "\(temp)°C"
+            windSpeed = "\(wind)"
+            humidity = "\(hum)"
+
+            sourceText = "Live"
+            sourceColor = .green
 
             saveWeather(
                 city: cityName,
                 temperature: temp,
-                icon: icon,
+                wind: wind,
+                humidity: hum,
                 context: context
             )
 
-        } catch {
-            temperatureText = "Unable to load"
         }
+        catch {
+
+            if let saved = fetchSaved(city: cityName, context: context) {
+
+                temperatureText = "\(saved.temperature)°C"
+                windSpeed = "\(saved.windSpeed)"
+                humidity = "\(saved.humidity)"
+
+                sourceText = "Saved"
+                sourceColor = .orange
+
+            }
+
+        }
+
     }
+
 
     
     private func saveWeather(
         city: String,
         temperature: Double,
-        icon: String,
+        wind: Double,
+        humidity: Double,
         context: NSManagedObjectContext
     ) {
+
         let weather = CityWeather(context: context)
+
         weather.cityName = city
         weather.temperature = temperature
-        weather.iconName = icon
+        weather.windSpeed = wind
+        weather.humidity = humidity
+
+       
+        weather.iconName = getWeatherIcon(from: temperature)
+
+        weather.isLive = true
 
         try? context.save()
+
     }
+
+    
+    
+    
+    private func fetchSaved(
+        city: String,
+        context: NSManagedObjectContext
+    ) -> CityWeather? {
+
+        let request: NSFetchRequest<CityWeather> = CityWeather.fetchRequest()
+
+        request.predicate = NSPredicate(
+            format: "cityName == %@", city
+        )
+
+        return try? context.fetch(request).first
+
+    }
+
+
 
 
     private func getWeatherIcon(from temperature: Double) -> String {
@@ -83,4 +142,6 @@ class DetailViewModel: ObservableObject {
             return Weather.snowy.icon
         }
     }
+    
+    
 }

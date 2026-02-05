@@ -7,7 +7,7 @@
 
 import Foundation
 
-let locations: [Location] = [
+var locations: [Location] = [
     Location(
         name: "Mumbai",
         latitude: 19.0760,
