@@ -2,25 +2,64 @@
 
 ## App Screens
 
+### App Icon
+![App Icon](output/final_app_icon.png)
+
+---
+
 ### Home Screen
-![Home Screen](output/home_latest_1.1.png)
+
+#### Light Mode
+![Home Light](output/final_home_light.png)
+
+#### Dark Mode
+![Home Dark](output/final_home_dark.png)
+
+---
 
 ### City List Screen
-![City List Screen](output/city_latest_1.1.png)
+
+#### Light Mode
+![City List Light](output/final_city_list_light.png)
+
+#### Dark Mode
+![City List Dark](output/final_city_list_dark.png)
+
+#### Landscape Mode
+![City List Landscape](output/final_city_list_landscape.png)
+
+---
 
 ### Weather Detail Screen
-![Weather Detail Screen](output/detail_view_latest_1.1.1.png)
-![Weather Detail Screen](output/detail_view_latest_1.1.2.png)
-![Weather Detail Screen](output/detail_view_latest_1.1.3.png)
+
+#### Light Mode
+![Detail Light](output/final_detail_screen_light.png)
+
+#### Dark Mode
+![Detail Dark](output/final_detail_Screen_dark.png)
+
+---
+
+### Search Screen
+![Search Screen](output/final_screen_screen_light.png)
 
 ---
 
 ## Features
 
-- Fetches real-time temperature using the Open-Meteo Weather API  
-- Displays weather details for selected cities  
-- Shows weather icons based on temperature range  
-- Uses MVVM architecture to separate UI and logic  
-- Uses Core Data to store weather data and update the list screen  
+- Fetches real-time weather data using the Open-Meteo Weather API  
+- Search and add new locations dynamically using Geocoding API  
+- Displays Live and Saved weather data with proper indicators  
+- Shows weather details including:
+  - Temperature
+  - Wind Speed
+  - Humidity
+  - Weather Icon
+- Supports deleting saved weather data and removing locations  
+- Stores weather data locally using Core Data  
+- Uses MVVM architecture for clean separation of concerns  
+- Supports Light Mode and Dark Mode UI  
+- Modern SwiftUI UI with reusable components  
 
----
+
+
